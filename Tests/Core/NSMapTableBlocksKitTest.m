@@ -104,22 +104,22 @@
 	XCTAssertTrue(rejected.count == 0, @"all items are selected");
 }
 
-- (void)testMap {
-	id(^transformBlock)(id, id) = ^id(id key,id value) {
-		_total += [value intValue] + [key intValue];
-		return @(_total);
-	};
-
-	NSMapTable *transformed = [_subject bk_map:transformBlock];
-	XCTAssertEqual(_total, (NSInteger)12, @"2*(1+2+3) = %ld", (long)_total);
-
-	NSMapTable *target = [NSMapTable strongToStrongObjectsMapTable];
-	[target setObject:@2 forKey:@"1"];
-	[target setObject:@6 forKey:@"2"];
-	[target setObject:@12 forKey:@"3"];
-
-	XCTAssertEqualObjects(transformed,target,@"transformed maptable is %@",transformed);
-}
+//- (void)testMap {
+//    id(^transformBlock)(id, id) = ^id(id key,id value) {
+//        _total += [value intValue] + [key intValue];
+//        return @(_total);
+//    };
+//
+//    NSMapTable *transformed = [_subject bk_map:transformBlock];
+//    XCTAssertEqual(_total, (NSInteger)12, @"2*(1+2+3) = %ld", (long)_total);
+//
+//    NSMapTable *target = [NSMapTable strongToStrongObjectsMapTable];
+//    [target setObject:@2 forKey:@"1"];
+//    [target setObject:@6 forKey:@"2"];
+//    [target setObject:@12 forKey:@"3"];
+//
+//    XCTAssertEqualObjects(transformed,target,@"transformed maptable is %@",transformed);
+//}
 
 - (void)testAny {
 	BOOL(^validationBlock)(id, id) = ^(id key,id value) {
@@ -143,16 +143,16 @@
 	XCTAssertTrue(allSelected, @"all values matched test");
 }
 
-- (void)testNone {
-	BOOL(^validationBlock)(id, id) = ^(id key,id value) {
-		_total += [value intValue] + [key intValue];
-		BOOL select = [value intValue] < 2 ? YES : NO;
-		return select;
-	};
-	BOOL noneSelected = [_subject bk_all:validationBlock];
-	XCTAssertEqual(_total, (NSInteger)6, @"2*(1+2) = %ld", (long)_total);
-	XCTAssertFalse(noneSelected, @"not all values matched test");
-}
+//- (void)testNone {
+//    BOOL(^validationBlock)(id, id) = ^(id key,id value) {
+//        _total += [value intValue] + [key intValue];
+//        BOOL select = [value intValue] < 2 ? YES : NO;
+//        return select;
+//    };
+//    BOOL noneSelected = [_subject bk_all:validationBlock];
+//    XCTAssertEqual(_total, (NSInteger)6, @"2*(1+2) = %ld", (long)_total);
+//    XCTAssertFalse(noneSelected, @"not all values matched test");
+//}
 
 - (void)testPerformSelect {
 	BOOL(^validationBlock)(id, id) = ^(id key, NSNumber *value) {

@@ -2,7 +2,7 @@ language: objective-c
 osx_image: xcode8
 xcode_project: BlocksKit.xcodeproj
 # xcode_workspace: <WORKSPACE_PLACEHOLDER>
-xcode_scheme: BlocksKit
+xcode_scheme: BlocksKit (iOS)
 xcode_sdk: iphonesimulator9.3
 env:
   global:

@@ -17,3 +17,10 @@ env:
 before_deploy:
   - carthage build --no-skip-current
   - carthage archive $FRAMEWORK_NAME
+deploy:
+  provider: releases
+  api_key: "b5faa5d4843896020bf651a8a4eb4fad553eccf6"
+  file: "BlocksKit.framework.zip"
+  skip_cleanup: true
+  on:
+    tags: true
